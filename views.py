@@ -57,6 +57,7 @@ from group.signals import grpmsg_added
 from notifications.models import UserNotification
 from profile.models import Profile
 from share.models import FileShare
+from tagging.models import Tag, TaggedItem
 from forms import AddUserForm, RepoCreateForm, RepoNewDirForm, RepoNewFileForm,\
     FileCommentForm, RepoRenameFileForm, RepoPassowrdForm, SharedRepoCreateForm,\
     SetUserQuotaForm, RepoSettingForm
@@ -1397,7 +1398,10 @@ def repo_view_file(request, repo_id):
     is_starred = is_file_starred(request.user.username, repo.id, path.encode('utf-8'), org_id)
 
     user_perm = get_user_permission(request, repo_id)
-        
+
+    tags = Tag.objects.all(**{'repo_id': repo.id, 'path': path})
+    my_tags = Tag.objects.all(**{'user': request.user.username})
+
     return render_to_response('file_view.html', {
             'repo': repo,
             'obj_id': obj_id,
@@ -1435,6 +1439,8 @@ def repo_view_file(request, repo_id):
             'user_perm': user_perm,
             'img_prev': img_prev,
             'img_next': img_next,
+            'tags': tags,
+            'my_tags': my_tags,
             }, context_instance=RequestContext(request))
 
 def file_comment(request):

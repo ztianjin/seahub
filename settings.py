@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'seahub.profile',
     'seahub.share',
     'api2',
+    'tagging',
 )
 
 AUTHENTICATION_BACKENDS = (

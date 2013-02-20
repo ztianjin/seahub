@@ -89,6 +89,7 @@ urlpatterns = patterns('',
     url(r'^groups/', group_list, name='group_list'),
     (r'^profile/', include('seahub.profile.urls')),
     (r'^share/', include('share.urls')),
+    (r'^tagging/', include('tagging.urls')),
 
     ### system admin ###                       
     (r'^sys/seafadmin/$', sys_seafadmin),

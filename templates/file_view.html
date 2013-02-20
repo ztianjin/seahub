@@ -9,7 +9,14 @@
 {% block main_panel %}
     <div id="view-hd">
         <h2>{{ u_filename }}</h2>
+        <div class="">{% trans "Tags:" %} 
+        {% for tag in tags %}
+        <a href="{% url 'tag_detail' tag.id tag.slug %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        <a href="#" class="edit_tag"> <img src="{{MEDIA_URL}}img/edit_12.png" alt="edit icon" title="{% trans "Add or edit tags"%}"> </a>
+        </div>
     </div>
+    
 
     <div id="view-path-op" class="w100 ovhd">
         <p class="path fleft">
@@ -96,6 +103,21 @@
         <input type="submit" value="{% trans "Submit"%}" class="submit" />
         <p class="error hide"></p>
         <p id="sending" class="hide">{% trans "Sending..."%}</p>        
+    </form>
+
+    <form id="edit-tag-form" method="post" action="{% url 'change_tag' %}" class="hide">
+      <h3>{% trans "Add / Edit Tags" %}</h3>
+      <label>{% trans "Tags (separate with commas)" %}</label><br />
+      <input type="hidden" name="repo_id" value="{{repo.id}}" />
+      <input type="hidden" name="path" value="{{path}}" />
+      <input type="text" name="tags" value="{{tags|join:", "}}" maxlength="100"/><br />
+      {% if my_tags %}
+      <label>Choose from my tags:</label>
+      {% for t in my_tags %}
+      <a href="#">{{t.name}}</a>{% if not forloop.last %},{% endif %}
+      {% endfor %}<br />
+      {% endif %}
+      <input type="submit" name="" value="{% trans "Submit" %}" class="submit" />
     </form>
 
     <div id="open-local-feedback" class="hide">
@@ -317,7 +339,7 @@ var gids = '';
 gids += '{{ g.id }}_';
 {% endfor %}
 addAtAutocomplete('#comment-input', '#comment-container', gids, "{% url 'group_attention' %}", {'width':'315px','padding-left':'1px','height':'36px','margin':'0','font-size':'13px', 'font-family':'Arial, Helvetica, sans-serif', 'line-height': '1.5em', 'border':'1px solid #ddd'});
-{% endif %}
+{% endif %}                     // END if groups
 $('#comment-input').bind('autocompleteopen', function(e, ui) {
     var menu = $(this).autocomplete('widget');
     if (parseInt(menu.css('top')) > 0) {
@@ -330,7 +352,7 @@ $('#comment-input').bind('autocompleteopen', function(e, ui) {
 $('#file-comment, #comment-caret').removeClass('hide');
 $(function() { $('#comment-caret').css({'left': $('#comment').offset().left}); });
 $('#comment-list').css({'max-height':parseInt($('#file-comment').css('max-height')) - $('#file-comment-form').outerHeight(true), 'overflow':'auto'});
-{% endif %}
+{% endif %}                     // END if comment_open
 $('#comment').click(function() {
     if ($('#file-comment').hasClass('hide')) {
         $('#file-comment, #comment-caret').removeClass('hide');
@@ -382,6 +404,31 @@ $('#file-comment-form .submit').click(function() {
     });
     return false;
 });
-{% endif %}
+// file tag
+$('.edit_tag').click(function() {
+    $('#edit-tag-form').modal({appendTo: "#main"});
+    $('#simplemodal-container').css('height', 'auto');
+    return false;
+});
+$('#edit-tag-form a').click(function() {
+    var tag_input = $('#edit-tag-form input[type="text"]');
+    var a_text = $(this).text();
+    if (tag_input.val()) {
+        var added = false;
+        $.each(tag_input.val().split(','), function(k, v) {
+            if ($.trim(v) == a_text) {
+                added = true;
+            }
+        });
+        if (!added) {
+            tag_input.val(tag_input.val()+', '+a_text);
+        }
+    } else {
+        tag_input.val(a_text);
+    }
+
+    return false;
+});
+{% endif %}                     // END if request.user.is_authenticated
 </script>
 {% endblock %}
