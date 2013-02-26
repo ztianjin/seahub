@@ -215,13 +215,13 @@
                 <p>
                 {% if msg.attachment.src == 'recommend' %}
                 <!-- recommend -->
-                <span class="recommend">{% trans "Recommended" %}
+                <span class="recommend">
                   {% if msg.attachment.attach_type == 'file' %}
                   <a href="{% url 'repo_view_file' msg.attachment.repo_id %}?p={{ msg.attachment.path|urlencode }}" target="_blank">
                   {% else %}
                   <a href="{% url 'repo' msg.attachment.repo_id %}?p={{ msg.attachment.path|urlencode }}" target="_blank">
                   {% endif %}
-                  {{ msg.attachment.name }}</a> :
+                  {{ msg.attachment.name }}</a> {% trans "has a new message:"%}:
                 </span>
                 {% endif %}
 

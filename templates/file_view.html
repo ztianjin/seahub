@@ -119,7 +119,7 @@
             <div class="w100 ovhd">
                 <a class="pic fleft" href="{% url 'user_profile' request.user.username %}">{% avatar request.user.username 48 %}</a>
                 <div id="comment-container" class="txt fright">
-                    <textarea name="message" id="comment-input">{% trans "Leave a message~"%}</textarea><br />
+                    <textarea name="message" id="comment-input">{% trans "Leave a comment~"%}</textarea><br />
                     <p class="error hide"></p>
                     <input type="submit" value="{% trans "Submit"%}" class="submit hide" />
                 </div>

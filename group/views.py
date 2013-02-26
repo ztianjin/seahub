@@ -760,12 +760,12 @@ def group_recommend(request):
             ma.save()
 
             group_url = reverse('group_info', args=[group_id])
-            msg = _(u'Successfully recommended to <a href="%(url)s" target="_blank">%(name)s</a>.') %\
+            msg = _(u'Successfully left a message to <a href="%(url)s" target="_blank">%(name)s</a>.') %\
                 {'url':group_url, 'name':group.group_name}
             messages.add_message(request, messages.INFO, msg)
 
     else:
-        messages.add_message(request, messages.ERROR, _(u'Failed to recommend.'))
+        messages.add_message(request, messages.ERROR, _(u'Failed.'))
     return HttpResponseRedirect(next)
 
 @login_required
