@@ -3,6 +3,7 @@ from django.conf import settings
 from django.views.generic.simple import direct_to_template
 
 from seahub.views import *
+from seahub.search import search
 from notifications.views import notification_list
 from group.views import group_list
 
@@ -94,6 +95,8 @@ urlpatterns = patterns('',
     url(r'^sys/useradmin/$', sys_useradmin, name='sys_useradmin'),
     url(r'^sys/orgadmin/$', sys_org_admin, name='sys_org_admin'),
     url(r'^sys/groupadmin/$', sys_group_admin, name='sys_group_admin'),
+
+    url(r'^search/$', search, name='search'),
 )
 
 if settings.SERVE_STATIC:
@@ -118,4 +121,3 @@ else:
         url(r'^pubinfo/groups/$', pubgrp, name='pubgrp'),
         url(r'^pubinfo/users/$', pubuser, name='pubuser'),
     )
-
