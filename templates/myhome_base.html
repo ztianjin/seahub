@@ -23,11 +23,10 @@
     {% endif %}
 </ul>
 {% if request.user.is_authenticated %}
-<div class="search-div">
-    <form method="post" action="{% url 'search_tag' %}">
-        <input id="search" type="text" name="search" placeholder="Search file tags" value="{{ query }}" />
-    </form>
-</div>
+<form method="post" action="{% url 'search_tag' %}" id="search" class="fright">
+    <input type="text" name="search" title="{% trans "Search file tags" %}" placeholder="{% trans "file tags" %}" value="{{ query }}" id="search-input" />
+    <input type="submit" value="" id="search-btn" />
+</form>
 {% endif %}
 {% endblock %}
 

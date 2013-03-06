@@ -313,11 +313,11 @@ textarea:-moz-placeholder {/* for FF */
     width:100%;
     font-size: 14px;
     font-weight: bold;
-    overflow:hidden;
     border-bottom:1px solid #ddd;
     margin-bottom:25px;
 }
 #header-inner {
+    overflow:hidden;
     width:950px;
     margin:0 auto;
 }
@@ -477,9 +477,30 @@ textarea:-moz-placeholder {/* for FF */
     color: #ff9933;
     text-decoration: underline;
 }
-#header .search-div {
-    padding-top:5px;
-    float: right;
+#search {
+    padding-left:5px;
+    width:276px;
+    height:28px;
+    border:1px solid #ddd;
+    border-radius:3px;
+    background:#fff;
+}
+#search-input,
+#search-btn {
+    border:0;
+    margin:0;
+    vertical-align:middle;
+}
+#search-input {
+    padding:3px 0;
+    width:242px;
+    outline:0;
+}
+#search-btn {
+    height:28px;
+    width:30px;
+    padding:0;
+    background:#fff url('../img/search.png') no-repeat scroll 50% 50%;
 }
 
 /* footer */
