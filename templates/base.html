@@ -88,8 +88,9 @@
                 {% block nav %}{% endblock %}
 
                 {% if request.user.is_authenticated %}
-                <form id="search-form" method="GET" action="{% url 'search' %}">
-                  <input id="search-keyword" name="keyword" placeholder="{% trans 'Search Seafile' %}" />
+                <form id="search-form" method="get" action="{% url 'search' %}" class="fright">
+                    <input id="search-input" name="q" placeholder="{% trans 'Search Files' %}" />
+                    <input type="submit" value="" id="search-submit" />
                 </form>
                 {% endif %}
             </div>
