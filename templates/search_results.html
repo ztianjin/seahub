@@ -26,11 +26,11 @@
         {% for file in results %}
         <tr>
             <td><img src="{{ MEDIA_URL }}img/file/{{ file.name|file_icon_filter }}" alt="{% trans "File"%}" /></td>
-            <td><a href="{% url 'repo_view_file' repo_id=file.repo.id %}?p={{ file.fullpath|urlencode }}">{{ file.name }}</a></td>
-            <td><a href="{% url 'repo' repo_id=file.repo.id %}">{{ file.repo.name }}</a></td>
+            <td><a href="{% url 'repo_view_file' repo_id=file.repo.id %}?p={{ file.fullpath|urlencode }}" target="_blank">{{ file.name }}</a></td>
+            <td><a href="{% url 'repo' repo_id=file.repo.id %}" target="_blank">{{ file.repo.name }}</a></td>
             <td>
                 {% avatar file.repo.owner 20 %}
-                <a class="name" href="{% url 'profile.views.user_profile' file.repo.owner %}">{{ file.repo.owner|email2nickname }}</a>
+                <a class="name" href="{% url 'profile.views.user_profile' file.repo.owner %}" target="_blank">{{ file.repo.owner|email2nickname }}</a>
             </td>
         </tr>
         {% endfor %}
