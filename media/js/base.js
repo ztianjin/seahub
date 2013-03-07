@@ -63,6 +63,7 @@ if ($.browser.msie) {
     $('button, input[type="checkbox"], input[type="radio"], input[type="submit"]').focus(function() {
         $(this).blur();
     });
+    $('.search-input').css({'line-height':$('.search-input').css('height')});
 }
 
 /*

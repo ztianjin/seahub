@@ -537,6 +537,9 @@ textarea:-moz-placeholder {/* for FF */
     height:21px;
     margin:0 14px;
 }
+.ru #header .nav li {
+    margin:0 11px;
+}
 #header .nav a,
 #header .nav a:visited {
     color:#8A948F;
@@ -1923,6 +1926,7 @@ textarea:-moz-placeholder {/* for FF */
 }
 #top-search-form {
     width:214px;
+    *width:218px;
     margin-top:1px;
 }
 .search-input,
@@ -1935,6 +1939,7 @@ textarea:-moz-placeholder {/* for FF */
 .search-input {
     width:180px;
     outline:0;
+    overflow:hidden;/*for some chromium*/
 }
 .search-form .search-submit {
     width:30px;
@@ -1943,6 +1948,7 @@ textarea:-moz-placeholder {/* for FF */
 }
 #search-form {
     width:426px;
+    *width:430px;
 }
 #search-form .search-input {
     width:392px;
