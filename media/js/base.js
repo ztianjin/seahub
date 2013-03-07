@@ -13,6 +13,13 @@ if ($('.messages')[0]) {
     setTimeout(function() { $('.messages').addClass('hide'); }, 10000);
 }
 
+// search: disable submit when input nothing
+$('.search-form').submit(function() {
+    if (!$.trim($(this).find('.search-input').val())) {
+        return false;
+    }
+});
+
 //highlight the tr when mouse hover on it
 $("table tr:gt(0), .checkbox-label").hover(
 	function() {
