@@ -1923,6 +1923,7 @@ textarea:-moz-placeholder {/* for FF */
     border:1px solid #ddd;
     border-radius:3px;
     background:#fff;
+    overflow:hidden;/*for some chromium*/
 }
 #top-search-form {
     width:214px;
@@ -1939,7 +1940,6 @@ textarea:-moz-placeholder {/* for FF */
 .search-input {
     width:180px;
     outline:0;
-    overflow:hidden;/*for some chromium*/
 }
 .search-form .search-submit {
     width:30px;
